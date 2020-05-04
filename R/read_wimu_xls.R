@@ -2,8 +2,8 @@
 #'
 #' This is a specific function for importing player-tracking data captured using
 #' WIMU GPS devices, processed in S-PRO software and exported as a spreadsheet.
-#' \code(read_wimu_xls) currently accepts data generated from the Intervals Pro
-#' \code(monitor).
+#' read_wimu_xls currently accepts data generated from the Intervals Pro
+#' monitor.
 #'
 #' @param path Path to the xls file containing WIMU data
 #' @param sheet Sheet to read. Either a string (the name of a sheet), or an
