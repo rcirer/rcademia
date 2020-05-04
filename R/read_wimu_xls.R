@@ -21,8 +21,13 @@ read_wimu_xls <- function(path,
                            session,
                            monitor = c("intervalspro"),
                            ids = NULL){
-  # Some checks
-  if (is.null(session)) print("You must provide a session name")
+  # Confirm this session has a name
+  if (is.null(session)) {
+   stop("You must provide a session name")
+  } else if (class(session) != "character") {
+    stop("Session should be a character")
+  }
+
   # Check monitor
   if (monitor == "intervalspro") {
     raw_data = readxl::read_excel(path = path, sheet = sheet) %>%
@@ -32,9 +37,14 @@ read_wimu_xls <- function(path,
   # Check id
   if (!is.null(ids)) {
     # Assign id codes
-    raw_data = raw_data %>%
-      dplyr::mutate(player = forcats::fct_recode(factor(player),
-                                                 !!!ids))
+    if (class(ids) == "character") {
+      raw_data = raw_data %>%
+        dplyr::mutate(player = forcats::fct_recode(factor(player),
+                                                   !!!ids))
+    } else {
+      warning("ids should be a character vector")
+    }
+
   } # end if id
   return(tibble(raw_data))
 }
