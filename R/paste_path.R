@@ -7,7 +7,7 @@
 
 #' @return A character string
 #' @export
-paste_path <- function(folder_path, file_name) {
+paste_pasth <- function(folder_path, file_name) {
 
   if (class(folder_path) != "character") {
     warning(paste("folder_path should be of character class, not",

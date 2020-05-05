@@ -13,5 +13,6 @@ Imports:
   readxl,
 	tidyverse,
 	janitor,
-	readr
+	readr,
+	purrr
 RoxygenNote: 7.1.0
