@@ -12,5 +12,6 @@ LazyData: true
 Imports:
   readxl,
 	tidyverse,
-	janitor
+	janitor,
+	readr
 RoxygenNote: 7.1.0
