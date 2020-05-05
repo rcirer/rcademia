@@ -26,7 +26,7 @@ load_rds <- function(...,
     ith_file = paste(ith_name, extension, sep = ".")
     ith_path = file.path(folder_path, ith_file)
     ith_rds = readr::read_rds(ith_path)
-    assign(ith_name, ith_rds)
+    assign(ith_name, ith_rds, envir=globalenv())
   }
 }
 
