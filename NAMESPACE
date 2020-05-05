@@ -2,3 +2,4 @@
 
 export(load_rds)
 export(read_wimu_xls)
+importFrom(magrittr,"%>%")

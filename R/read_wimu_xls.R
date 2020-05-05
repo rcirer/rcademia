@@ -15,6 +15,7 @@
 #' @param ids Named vector containing the id associated to each wimu, in the
 #'   style of c("P101" = "WIMU_1", ...)
 #' @return A tibble
+#' @importFrom magrittr %>%
 #' @export
 read_wimu_xls <- function(path,
                            sheet = "Tables",
@@ -32,7 +33,7 @@ read_wimu_xls <- function(path,
   if (monitor == "intervalspro") {
     raw_data = readxl::read_excel(path = path, sheet = sheet) %>%
       janitor::clean_names() %>%
-      dplyr::mutate(session = UQ(session))
+      dplyr::mutate(session = rlang::UQ(session))
   } # end if monitor
   # Check id
   if (!is.null(ids)) {
@@ -46,14 +47,6 @@ read_wimu_xls <- function(path,
     }
 
   } # end if id
-  return(tibble(raw_data))
+  return(tibble::tibble(raw_data))
 }
-
-
-
-
-
-
-
-
 

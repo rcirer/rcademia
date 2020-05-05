@@ -14,7 +14,7 @@ load_rds(..., folder_path = "./../dat", extension = "rds")
 \item{extension}{At the moment it only accepts rds files}
 }
 \value{
-Nothing
+
 }
 \description{
 Loads all data objects contained in the project dat folder

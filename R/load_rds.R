@@ -6,7 +6,8 @@
 #' @param folder_path Lets you change the directory where data files are stored
 #' @param extension At the moment it only accepts rds files
 
-#' @return Nothing
+#' @return
+#' @importFrom magrittr %>%
 #' @export
 load_rds <- function(...,
                      folder_path = "./../dat",
