@@ -20,7 +20,7 @@ load_rds <- function(...,
   if (purrr::vec_depth(files) != 2) {
     stop("Depth of files should be 2")
   }
-  # should check somewhere that it is a rds file. or if it exists
+  # shouldn't check somewhere that it is a rds file, or if it exists?
   for (i in seq_along(files)) {
     ith_name = files[i][[1]]
     ith_file = paste(ith_name, extension, sep = ".")

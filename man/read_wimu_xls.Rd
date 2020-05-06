@@ -8,6 +8,7 @@ read_wimu_xls(
   path,
   sheet = "Tables",
   session,
+  player.var = "player",
   monitor = c("intervalspro"),
   ids = NULL
 )
@@ -21,6 +22,8 @@ range. If neither argument specifies the sheet, defaults to the first
 sheet.}
 
 \item{session}{Name of the session (character)}
+
+\item{player.var}{Name of the raw column containing ids}
 
 \item{monitor}{Must be intervalspro.}
 

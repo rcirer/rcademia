@@ -11,6 +11,7 @@
 #'   range. If neither argument specifies the sheet, defaults to the first
 #'   sheet.
 #' @param session Name of the session (character)
+#' @param player.var Name of the raw column containing ids
 #' @param monitor Must be intervalspro.
 #' @param ids Named vector containing the id associated to each wimu, in the
 #'   style of c("P101" = "WIMU_1", ...)
@@ -20,6 +21,7 @@
 read_wimu_xls <- function(path,
                            sheet = "Tables",
                            session,
+                           player.var = "player",
                            monitor = c("intervalspro"),
                            ids = NULL){
   # Confirm this session has a name
@@ -28,25 +30,23 @@ read_wimu_xls <- function(path,
   } else if (class(session) != "character") {
     stop("Session should be a character")
   }
-
   # Check monitor
   if (monitor == "intervalspro") {
     raw_data = readxl::read_excel(path = path, sheet = sheet) %>%
       janitor::clean_names() %>%
-      dplyr::mutate(session = rlang::UQ(session))
+      dplyr::mutate(session = rlang::expr(!!session))
   } # end if monitor
   # Check id
   if (!is.null(ids)) {
     # Assign id codes
     if (class(ids) == "character") {
       raw_data = raw_data %>%
-        dplyr::mutate(player = forcats::fct_recode(factor(player),
-                                                   !!!ids))
+        dplyr::mutate(player.var = as.character(forcats::fct_recode(factor(rlang::expr(!!player.var)),
+                                                   !!!ids)))
     } else {
       warning("ids should be a character vector")
     }
-
-  } # end if id
+  } # end checking id
   return(tibble::tibble(raw_data))
 }
 
