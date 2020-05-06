@@ -41,7 +41,7 @@ read_wimu_xls <- function(path,
     # Assign id codes
     if (class(ids) == "character") {
       raw_data = raw_data %>%
-        dplyr::mutate(player.var = as.character(forcats::fct_recode(factor(rlang::expr(!!player.var)),
+        dplyr::mutate(player = as.character(forcats::fct_recode(factor(player),
                                                    !!!ids)))
     } else {
       warning("ids should be a character vector")
